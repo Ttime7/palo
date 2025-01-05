@@ -1,5 +1,9 @@
 #preconfig secuity profiles
-set network profiles zone-protection-profile Default flood tcp-syn enable red-protection enable red-protection alarm-rate 200 red-protection activate-rate 300 red-protection maximum-rate 500
+delete zone Internal network zone-protection-profile Basic
+delete zone User network zone-protection-profile Basic
+delete zone Public network zone-protection-profile Basic
+delete zone External network zone-protection-profile Basic
+delete network profiles zone-protection-profile Basic
 
 set network profiles zone-protection-profile Basic flood tcp-syn enable yes
 set network profiles zone-protection-profile Basic flood udp enable yes
