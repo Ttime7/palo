@@ -1,3 +1,7 @@
+#preconfig secuity profiles
+set network profiles zone-protection-profile Default discard-overlapping-tcp-segment-mismatch yes discard-unknown-option yes tcp-reject-non-syn yes flood tcp-syn enable yes syn-cookies maximal-rate 500
+
+
 #Allow DNS Service
 set rulebase security rules Allow-DNS from any to any application dns service application-default action allow log-start yes log-end yes
 # Int to Int traffic
