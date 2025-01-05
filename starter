@@ -7,10 +7,10 @@ set network profiles zone-protection-profile Basic flood icmp enable yes
 set network profiles zone-protection-profile Basic flood icmpv6 enable yes
 set network profiles zone-protection-profile Basic flood other-ip enable yes
 
-set network profiles zone-protection-profile Basic scan 8001
-set network profiles zone-protection-profile Basic scan 8002
-set network profiles zone-protection-profile Basic scan 8003
-set network profiles zone-protection-profile Basic scan 8006
+set network profiles zone-protection-profile Basic scan 8001 action alert
+set network profiles zone-protection-profile Basic scan 8002 action alert
+set network profiles zone-protection-profile Basic scan 8003 action block-ip
+set network profiles zone-protection-profile Basic scan 8006 action block-ip
 
 
 set network profiles zone-protection-profile Basic discard-overlapping-tcp-segment-mismatch yes
