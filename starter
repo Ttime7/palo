@@ -6,17 +6,19 @@ set network profiles zone-protection-profile Basic flood udp enable yes
 set network profiles zone-protection-profile Basic flood icmp enable yes
 set network profiles zone-protection-profile Basic flood icmpv6 enable yes
 set network profiles zone-protection-profile Basic flood other-ip enable yes
-set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan enable yes
-set network profiles zone-protection-profile Basic reconnaissance udp-port-scan enable yes
-set network profiles zone-protection-profile Basic reconnaissance host-sweep enable yes
+
+set network profiles zone-protection-profile Basic tcp-port-scan enable yes
+set network profiles zone-protection-profile Basic udp-port-scan enable yes
+set network profiles zone-protection-profile Basic host-sweep enable yes
+
 set network profiles zone-protection-profile Basic discard-overlapping-tcp-segment-mismatch yes
 set network profiles zone-protection-profile Basic discard-unknown-option yes
 set network profiles zone-protection-profile Basic tcp-reject-non-syn yes
 
-set network zone Internal zone-protection-profile Basic
-set network zone User zone-protection-profile Basic
-set network zone Public zone-protection-profile Basic
-set network zone External zone-protection-profile Basic
+set zone Internal network zone-protection-profile Basic
+set zone User network zone-protection-profile Basic
+set zone Public network zone-protection-profile Basic
+set zone External network zone-protection-profile Basic
 #DNS RULES
 
 #Allow DNS Service
