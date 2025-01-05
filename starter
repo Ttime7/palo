@@ -1,13 +1,13 @@
 #Allow DNS Service
-set rulebase security rules Allow-DNS-Service source zone INTERNAL
-set rulebase security rules Allow-DNS-Service source zone USER
-set rulebase security rules Allow-DNS-Service destination zone INTERNAL
-set rulebase security rules Allow-DNS-Service destination address 172.20.240.20
-set rulebase security rules Allow-DNS-Service application dns
-set rulebase security rules Allow-DNS-Service service application-default
-set rulebase security rules Allow-DNS-Service action allow
-set rulebase security rules Allow-DNS-Service log-start yes
-set rulebase security rules Allow-DNS-Service log-end yes
+set rulebase security rules allow-internal-to-internal source zone internal
+set rulebase security rules allow-internal-to-internal source address 172.20.240.0/24
+set rulebase security rules allow-internal-to-internal destination zone internal
+set rulebase security rules allow-internal-to-internal destination address 172.20.240.0/24
+set rulebase security rules allow-internal-to-internal application any
+set rulebase security rules allow-internal-to-internal service any
+set rulebase security rules allow-internal-to-internal action allow
+set rulebase security rules allow-internal-to-internal log-start yes
+set rulebase security rules allow-internal-to-internal log-end yes
 
 
 # Int to Int traffic
