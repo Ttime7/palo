@@ -2,7 +2,11 @@
 set network profiles zone-protection-profile Default flood tcp-syn enable red-protection enable red-protection alarm-rate 200 red-protection activate-rate 300 red-protection maximum-rate 500
 
 
-set network profiles zone-protection-profile Basic-ZP discard-overlapping-tcp-segment-mismatch yes discard-unknown-option yes tcp-reject-non-syn yes flood tcp-syn enable flood icmp enable yes flood udp enable yes flood other-ip enable yes flood icmpv6 enable yes
+set network profiles zone-protection-profile Basic-ZP flood tcp-syn enable
+set network profiles zone-protection-profile Basic-ZP flood icmp enable
+set network profiles zone-protection-profile Basic-ZP flood udp enable
+set network profiles zone-protection-profile Basic-ZP flood other-ip enable
+set network profiles zone-protection-profile Basic-ZP flood icmpv6 enable
 set network zone Internal zone-protection-profile Basic-ZP
 set network zone User zone-protection-profile Basic-ZP
 set network zone Public zone-protection-profile Basic-ZP
