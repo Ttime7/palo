@@ -1,6 +1,13 @@
 #preconfig secuity profiles
-set network profiles zone-protection-profile Default discard-overlapping-tcp-segment-mismatch yes discard-unknown-option yes tcp-reject-non-syn yes flood tcp-syn enable yes syn-cookies maximal-rate 500
+set network profiles zone-protection-profile Default flood tcp-syn enable red-protection enable red-protection alarm-rate 200 red-protection activate-rate 300 red-protection maximum-rate 500
 
+
+set network profiles zone-protection-profile Default discard-overlapping-tcp-segment-mismatch yes discard-unknown-option yes tcp-reject-non-syn yes flood tcp-syn enable red-protection enable red-protection alarm-rate 200 red-protection activate-rate 300 red-protection maximum-rate 500 flood icmp enable yes flood udp enable yes flood other-ip enable yes flood icmpv6 enable yes
+set network zone Internal zone-protection-profile Default
+set network zone User zone-protection-profile Default
+set network zone Public zone-protection-profile Default
+set network zone External zone-protection-profile Default
+#DNS RULES
 
 #Allow DNS Service
 set rulebase security rules Allow-DNS from any to any application dns service application-default action allow log-start yes log-end yes
