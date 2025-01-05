@@ -21,7 +21,19 @@ set zone Internal network zone-protection-profile Basic
 set zone User network zone-protection-profile Basic
 set zone Public network zone-protection-profile Basic
 set zone External network zone-protection-profile Basic
-#DNS RULES
+
+#restict managment access 
+set network interface ethernet ethernet1/1 layer3 interface-management-profile none
+set network interface ethernet ethernet1/2 layer3 interface-management-profile none
+set network interface ethernet ethernet1/3 layer3 interface-management-profile none
+
+#DNS ALLOW RULES
+set address GoogleDNS-Primary ip-netmask 8.8.8.8
+set address GoogleDNS-Secondary ip-netmask 8.8.4.4
+set address CloudflareDNS-Primary ip-netmask 1.1.1.1
+set address CloudflareDNS-Secondary ip-netmask 1.0.0.1
+set address-group DNS-Servers static GoogleDNS-Primary GoogleDNS-Secondary CloudflareDNS-Primary CloudflareDNS-Secondary
+
 
 #Allow DNS Service
 set rulebase security rules Allow-DNS from any to any application dns service application-default action allow log-start yes log-end yes
