@@ -1,16 +1,22 @@
 #preconfig secuity profiles
 set network profiles zone-protection-profile Default flood tcp-syn enable red-protection enable red-protection alarm-rate 200 red-protection activate-rate 300 red-protection maximum-rate 500
 
+set network profiles zone-protection-profile Basic flood tcp-syn enable yes
+set network profiles zone-protection-profile Basic flood udp enable yes
+set network profiles zone-protection-profile Basic flood icmp enable yes
+set network profiles zone-protection-profile Basic flood icmpv6 enable yes
+set network profiles zone-protection-profile Basic flood other-ip enable yes
+set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan enable yes
+set network profiles zone-protection-profile Basic reconnaissance udp-port-scan enable yes
+set network profiles zone-protection-profile Basic reconnaissance host-sweep enable yes
+set network profiles zone-protection-profile Basic discard-overlapping-tcp-segment-mismatch yes
+set network profiles zone-protection-profile Basic discard-unknown-option yes
+set network profiles zone-protection-profile Basic tcp-reject-non-syn yes
 
-set network profiles zone-protection-profile Basic-ZP flood tcp-syn enable
-set network profiles zone-protection-profile Basic-ZP flood icmp enable
-set network profiles zone-protection-profile Basic-ZP flood udp enable
-set network profiles zone-protection-profile Basic-ZP flood other-ip enable
-set network profiles zone-protection-profile Basic-ZP flood icmpv6 enable
-set network zone Internal zone-protection-profile Basic-ZP
-set network zone User zone-protection-profile Basic-ZP
-set network zone Public zone-protection-profile Basic-ZP
-set network zone External zone-protection-profile Basic-ZP
+set network zone Internal zone-protection-profile Basic
+set network zone User zone-protection-profile Basic
+set network zone Public zone-protection-profile Basic
+set network zone External zone-protection-profile Basic
 #DNS RULES
 
 #Allow DNS Service
