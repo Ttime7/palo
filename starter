@@ -4,7 +4,7 @@ delete zone User network zone-protection-profile
 delete zone Public network zone-protection-profile 
 delete zone External network zone-protection-profile 
 delete network profiles zone-protection-profile 
-delete network profiles zone-protection-profile Basic
+delete network profiles zone-protection-profile ZoneRulez
 
 set network profiles zone-protection-profile ZoneRulz flood tcp-syn enable yes
 set network profiles zone-protection-profile ZoneRulz flood udp enable yes
