@@ -1,7 +1,7 @@
 #Allow DNS Service
-set rulebase security rules allow-internal-to-internal source zone internal
+set rulebase security rules allow-internal-to-internal source zone Internal
 set rulebase security rules allow-internal-to-internal source address 172.20.240.0/24
-set rulebase security rules allow-internal-to-internal destination zone internal
+set rulebase security rules allow-internal-to-internal destination zone Internal
 set rulebase security rules allow-internal-to-internal destination address 172.20.240.0/24
 set rulebase security rules allow-internal-to-internal application any
 set rulebase security rules allow-internal-to-internal service any
