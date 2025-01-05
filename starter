@@ -1,5 +1,6 @@
 #Allow DNS Service
-set rulebase security rules allow-internal-to-internal from zone Internal to zone Internal source 172.20.240.0/24 destination 172.20.240.0/24 application any service any action allow log-start yes log-end yes
+set rulebase security rules allow-internal-to-internal from zone Internal to zone Internal source any destination any application any service any action allow log-start yes log-end yes
+
 
 
 # Int to Int traffic
