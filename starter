@@ -9,7 +9,6 @@ delete network profiles zone-protection-profile ZoneRulez
 set network profiles zone-protection-profile ZoneRulz flood tcp-syn enable yes
 set network profiles zone-protection-profile ZoneRulz flood udp enable yes
 set network profiles zone-protection-profile ZoneRulz flood icmp enable yes
-set network profiles zone-protection-profile ZoneRulz flood icmpv6 enable yes
 set network profiles zone-protection-profile ZoneRulz flood other-ip enable yes
 
 set network profiles zone-protection-profile ZoneRulz scan 8001 action alert
