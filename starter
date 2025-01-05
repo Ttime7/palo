@@ -6,26 +6,11 @@ delete zone External network zone-protection-profile
 delete network profiles zone-protection-profile 
 delete network profiles zone-protection-profile Basic
 
-set network profiles zone-protection-profile ZoneRulz flood tcp-syn action syn-cookie
-set network profiles zone-protection-profile ZoneRulz flood tcp-syn alarm-rate 9200
-set network profiles zone-protection-profile ZoneRulz flood tcp-syn activate-rate 11000
-set network profiles zone-protection-profile ZoneRulz flood tcp-syn maximum-rate 40000
-
-set network profiles zone-protection-profile ZoneRulz flood udp alarm-rate 9200
-set network profiles zone-protection-profile ZoneRulz flood udp activate-rate 11000
-set network profiles zone-protection-profile ZoneRulz flood udp maximum-rate 40000
-
-set network profiles zone-protection-profile ZoneRulz flood icmp alarm-rate 9200
-set network profiles zone-protection-profile ZoneRulz flood icmp activate-rate 11000
-set network profiles zone-protection-profile ZoneRulz flood icmp maximum-rate 40000
-
-set network profiles zone-protection-profile ZoneRulz flood icmpv6 alarm-rate 9200
-set network profiles zone-protection-profile ZoneRulz flood icmpv6 activate-rate 11000
-set network profiles zone-protection-profile ZoneRulz flood icmpv6 maximum-rate 40000
-
-set network profiles zone-protection-profile ZoneRulz flood other-ip alarm-rate 9200
-set network profiles zone-protection-profile ZoneRulz flood other-ip activate-rate 11000
-set network profiles zone-protection-profile ZoneRulz flood other-ip maximum-rate 40000
+set network profiles zone-protection-profile ZoneRulz flood tcp-syn enable yes
+set network profiles zone-protection-profile ZoneRulz flood udp enable yes
+set network profiles zone-protection-profile ZoneRulz flood icmp enable yes
+set network profiles zone-protection-profile ZoneRulz flood icmpv6 enable yes
+set network profiles zone-protection-profile ZoneRulz flood other-ip enable yes
 
 set network profiles zone-protection-profile ZoneRulz scan 8001 action alert
 set network profiles zone-protection-profile ZoneRulz scan 8002 action alert
@@ -35,11 +20,6 @@ set network profiles zone-protection-profile ZoneRulz scan 8006 action block-ip 
 set network profiles zone-protection-profile ZoneRulz discard-overlapping-tcp-segment-mismatch yes
 set network profiles zone-protection-profile ZoneRulz discard-unknown-option yes
 set network profiles zone-protection-profile ZoneRulz tcp-reject-non-syn yes
-
-set zone Internal network zone-protection-profile ZoneRulz
-set zone User network zone-protection-profile ZoneRulz
-set zone Public network zone-protection-profile ZoneRulz
-set zone External network zone-protection-profile ZoneRulz
 
 #restict managment access 
 set network interface ethernet ethernet1/1 layer3 interface-management-profile none
