@@ -1,0 +1,91 @@
+#Allow DNS Service
+set rulebase security rules Allow-DNS-Service source zone INTERNAL
+set rulebase security rules Allow-DNS-Service source zone USER
+set rulebase security rules Allow-DNS-Service destination zone INTERNAL
+set rulebase security rules Allow-DNS-Service destination address 172.20.240.20
+set rulebase security rules Allow-DNS-Service application dns
+set rulebase security rules Allow-DNS-Service service application-default
+set rulebase security rules Allow-DNS-Service action allow
+set rulebase security rules Allow-DNS-Service log-start yes
+set rulebase security rules Allow-DNS-Service log-end yes
+
+
+# Int to Int traffic
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL source zone INTERNAL
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL source address 172.20.240.0/24
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL destination zone INTERNAL
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL destination address 172.20.240.0/24
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL application any
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL service any
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL action allow
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL log-start yes
+set rulebase security rules Allow-INTERNAL-TO-INTERNAL log-end yes
+
+# Allow Traffic from USER to INTERNAL
+set rulebase security rules Allow-USER-TO-INTERNAL source zone USER
+set rulebase security rules Allow-USER-TO-INTERNAL source address 172.20.242.0/24
+set rulebase security rules Allow-USER-TO-INTERNAL destination zone INTERNAL
+set rulebase security rules Allow-USER-TO-INTERNAL destination address 172.20.240.0/24
+set rulebase security rules Allow-USER-TO-INTERNAL application dns ntp
+set rulebase security rules Allow-USER-TO-INTERNAL service application-default
+set rulebase security rules Allow-USER-TO-INTERNAL action allow
+set rulebase security rules Allow-USER-TO-INTERNAL log-start yes
+set rulebase security rules Allow-USER-TO-INTERNAL log-end yes
+
+
+#Allow Traffic from INTERNAL to PUBLIC
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC source zone INTERNAL
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC source address 172.20.240.0/24
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC destination zone PUBLIC
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC destination address 172.20.241.0/24
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC application web-browsing ssl smtp pop3
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC service application-default
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC action allow
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC log-start yes
+set rulebase security rules Allow-INTERNAL-TO-PUBLIC log-end yes
+
+#Allow Traffic from USER to PUBLIC
+set rulebase security rules Allow-USER-TO-PUBLIC source zone USER
+set rulebase security rules Allow-USER-TO-PUBLIC source address 172.20.242.0/24
+set rulebase security rules Allow-USER-TO-PUBLIC destination zone PUBLIC
+set rulebase security rules Allow-USER-TO-PUBLIC destination address 172.20.241.0/24
+set rulebase security rules Allow-USER-TO-PUBLIC application web-browsing ssl smtp pop3
+set rulebase security rules Allow-USER-TO-PUBLIC service application-default
+set rulebase security rules Allow-USER-TO-PUBLIC action allow
+set rulebase security rules Allow-USER-TO-PUBLIC log-start yes
+set rulebase security rules Allow-USER-TO-PUBLIC log-end yes
+
+#Allow Traffic from PUBLIC to PUBLIC
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC source zone PUBLIC
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC source address 172.20.241.0/24
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC destination zone PUBLIC
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC destination address 172.20.241.0/24
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC application web-browsing ssl smtp pop3
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC service application-default
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC action allow
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC log-start yes
+set rulebase security rules Allow-PUBLIC-TO-PUBLIC log-end yes
+
+#VERY LAST SECURITY RULE Deny Unauthorized Traffic
+set rulebase security rules Deny-ALL source zone any
+set rulebase security rules Deny-ALL destination zone any
+set rulebase security rules Deny-ALL application any
+set rulebase security rules Deny-ALL service any
+set rulebase security rules Deny-ALL action deny
+set rulebase security rules Deny-ALL log-start yes
+set rulebase security rules Deny-ALL log-end yes
+
+#profiles
+set rulebase security rules Profile-set profile-setting profiles WildFire_Profile Antivirus_Profile AntiSpyware_Profile
+
+#Zone protect profile
+set network profiles zone-protection-profile synFlood flood-protection syn enable
+set network profiles zone-protection-profile ReconProtect reconnaissance-protection tcp-port-scan enable
+set network zone INTERNAL zone-protection-profile INTzone
+set network zone USER zone-protection-profile userZone
+set network zone PUBLIC zone-protection-profile PublicZone
+
+#alertLogging
+set log-settings filter name RedTeamAlert filter "(severity eq critical)"
+set log-settings system admin-login-failure alert yes
+
