@@ -7,26 +7,9 @@ set network profiles zone-protection-profile Basic flood icmp enable yes
 set network profiles zone-protection-profile Basic flood icmpv6 enable yes
 set network profiles zone-protection-profile Basic flood other-ip enable yes
 
-set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan enable yes
-set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan interval 10
-set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan threshold 50
-set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan action block-ip
-set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan block-ip track-by source
-set network profiles zone-protection-profile Basic reconnaissance tcp-port-scan block-ip duration 3600
-
-set network profiles zone-protection-profile Basic reconnaissance udp-port-scan enable yes
-set network profiles zone-protection-profile Basic reconnaissance udp-port-scan interval 10
-set network profiles zone-protection-profile Basic reconnaissance udp-port-scan threshold 50
-set network profiles zone-protection-profile Basic reconnaissance udp-port-scan action block-ip
-set network profiles zone-protection-profile Basic reconnaissance udp-port-scan block-ip track-by source
-set network profiles zone-protection-profile Basic reconnaissance udp-port-scan block-ip duration 3600
-
-set network profiles zone-protection-profile Basic reconnaissance host-sweep enable yes
-set network profiles zone-protection-profile Basic reconnaissance host-sweep interval 10
-set network profiles zone-protection-profile Basic reconnaissance host-sweep threshold 50
-set network profiles zone-protection-profile Basic reconnaissance host-sweep action block-ip
-set network profiles zone-protection-profile Basic reconnaissance host-sweep block-ip track-by source
-set network profiles zone-protection-profile Basic reconnaissance host-sweep block-ip duration 3600
+set network profiles zone-protection-profile Basic scan tcp-port-scan enable yes
+set network profiles zone-protection-profile Basic scan udp-port-scan enable yes
+set network profiles zone-protection-profile Basic scan host-sweep enable yes
 
 set network profiles zone-protection-profile Basic discard-overlapping-tcp-segment-mismatch yes
 set network profiles zone-protection-profile Basic discard-unknown-option yes
