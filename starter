@@ -1,30 +1,30 @@
 #preconfig secuity profiles
-delete zone Internal network zone-protection-profile Basic
-delete zone User network zone-protection-profile Basic
-delete zone Public network zone-protection-profile Basic
-delete zone External network zone-protection-profile Basic
+delete zone Internal network zone-protection-profile 
+delete zone User network zone-protection-profile 
+delete zone Public network zone-protection-profile 
+delete zone External network zone-protection-profile 
+delete network profiles zone-protection-profile 
 delete network profiles zone-protection-profile Basic
 
-set network profiles zone-protection-profile Basic flood tcp-syn enable yes
-set network profiles zone-protection-profile Basic flood udp enable yes
-set network profiles zone-protection-profile Basic flood icmp enable yes
-set network profiles zone-protection-profile Basic flood icmpv6 enable yes
-set network profiles zone-protection-profile Basic flood other-ip enable yes
+set network profiles zone-protection-profile ZoneRulz flood tcp-syn enable yes
+set network profiles zone-protection-profile ZoneRulz flood udp enable yes
+set network profiles zone-protection-profile ZoneRulz flood icmp enable yes
+set network profiles zone-protection-profile ZoneRulz flood icmpv6 enable yes
+set network profiles zone-protection-profile ZoneRulz flood other-ip enable yes
 
-set network profiles zone-protection-profile Basic scan 8001 action alert
-set network profiles zone-protection-profile Basic scan 8002 action alert
-set network profiles zone-protection-profile Basic scan 8003 action block-ip track-by source-and-destination duration 3600
-set network profiles zone-protection-profile Basic scan 8006 action block-ip track-by source-and-destination duration 3600
+set network profiles zone-protection-profile ZoneRulz scan 8001 action alert
+set network profiles zone-protection-profile ZoneRulz scan 8002 action alert
+set network profiles zone-protection-profile ZoneRulz scan 8003 action block-ip track-by source-and-destination duration 3600
+set network profiles zone-protection-profile ZoneRulz scan 8006 action block-ip track-by source-and-destination duration 3600
 
+set network profiles zone-protection-profile ZoneRulz discard-overlapping-tcp-segment-mismatch yes
+set network profiles zone-protection-profile ZoneRulz discard-unknown-option yes
+set network profiles zone-protection-profile ZoneRulz tcp-reject-non-syn yes
 
-set network profiles zone-protection-profile Basic discard-overlapping-tcp-segment-mismatch yes
-set network profiles zone-protection-profile Basic discard-unknown-option yes
-set network profiles zone-protection-profile Basic tcp-reject-non-syn yes
-
-set zone Internal network zone-protection-profile Basic
-set zone User network zone-protection-profile Basic
-set zone Public network zone-protection-profile Basic
-set zone External network zone-protection-profile Basic
+set zone Internal network zone-protection-profile ZoneRulz
+set zone User network zone-protection-profile ZoneRulz
+set zone Public network zone-protection-profile ZoneRulz
+set zone External network zone-protection-profile ZoneRulz
 
 #restict managment access 
 set network interface ethernet ethernet1/1 layer3 interface-management-profile none
