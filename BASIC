@@ -9,11 +9,11 @@ set rulebase security rules Allow-HTTP-HTTPS application ssl
 
 
 
-set rulebase security rules Allow-SMTP from User to External application smtp-base smtp-non-rfc smtp-starttls action allow
-set rulebase security rules Allow-SMTP from Public to External application smtp-base smtp-non-rfc smtp-starttls action allow
+set rulebase security rules Allow-SMTP from User to External application smtp-base action allow
+set rulebase security rules Allow-SMTP from Public to External application smtp-base action allow
 
-set rulebase security rules Allow-NTP from User to External application ntp-base ntp-non-rfc action allow
-set rulebase security rules Allow-NTP from Public to External application ntp-base ntp-non-rfc action allow
+set rulebase security rules Allow-NTP from User to External application ntp-base action allow
+set rulebase security rules Allow-NTP from Public to External application ntp-base action allow
 
 set rulebase security rules Allow-ICMP from User to any application ping action allow
 set rulebase security rules Allow-ICMP from Public to any application ping action allow
