@@ -1,8 +1,13 @@
-set rulebase security rules Allow-DNS from User to External application dns action allow
-set rulebase security rules Allow-DNS from Public to External application dns action allow
+set rulebase security rules Allow-DNS from User to External application dns-base action allow
+set rulebase security rules Allow-DNS from Public to External application dns-base action allow
 
-set rulebase security rules Allow-HTTP-HTTPS from User to External application web-browsing ssl action allow
-set rulebase security rules Allow-HTTP-HTTPS from Public to External application web-browsing ssl action allow
+set rulebase security rules Allow-HTTP-HTTPS from User to External application web-browsing action allow
+set rulebase security rules Allow-HTTP-HTTPS application ssl
+set rulebase security rules Allow-HTTP-HTTPS from Public to External application web-browsing action allow
+set rulebase security rules Allow-HTTP-HTTPS application ssl
+
+
+
 
 set rulebase security rules Allow-SMTP from User to External application smtp-base smtp-non-rfc smtp-starttls action allow
 set rulebase security rules Allow-SMTP from Public to External application smtp-base smtp-non-rfc smtp-starttls action allow
