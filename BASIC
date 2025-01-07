@@ -6,9 +6,6 @@ set rulebase security rules Allow-HTTP-HTTPS application ssl
 set rulebase security rules Allow-HTTP-HTTPS from Public to External application web-browsing action allow
 set rulebase security rules Allow-HTTP-HTTPS application ssl
 
-
-
-
 set rulebase security rules Allow-SMTP from User to External application smtp-base action allow
 set rulebase security rules Allow-SMTP from Public to External application smtp-base action allow
 
@@ -18,8 +15,32 @@ set rulebase security rules Allow-NTP from Public to External application ntp-ba
 set rulebase security rules Allow-ICMP from User to any application ping action allow
 set rulebase security rules Allow-ICMP from Public to any application ping action allow
 
-set rulebase security rules Deny-All from User to any application any action deny
-set rulebase security rules Deny-All from Public to any application any action deny
+
+# DNS Traffic
+set rulebase security rules Allow-DNS from User to External source any destination any application dns-base action allow
+set rulebase security rules Allow-DNS from Public to External source any destination any application dns-base action allow
+
+# HTTP/HTTPS Traffic
+set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application web-browsing action allow
+set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application ssl action allow
+set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application web-browsing action allow
+set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application ssl action allow
+
+# SMTP Traffic
+set rulebase security rules Allow-SMTP from User to External source any destination any application smtp-base action allow
+set rulebase security rules Allow-SMTP from Public to External source any destination any application smtp-base action allow
+
+# NTP Traffic
+set rulebase security rules Allow-NTP from User to External source any destination any application ntp-base action allow
+set rulebase security rules Allow-NTP from Public to External source any destination any application ntp-base action allow
+
+# ICMP Traffic
+set rulebase security rules Allow-ICMP from User to any source any destination any application ping action allow
+set rulebase security rules Allow-ICMP from Public to any source any destination any application ping action allow
+
+
+
+
 
 
 # Allow DNS (User → External)
