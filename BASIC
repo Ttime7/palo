@@ -1,25 +1,18 @@
 
+# Allow DNS (User → External)
+set rulebase security rules Allow-DNS from User to External application dns service application-default action allow log-start yes log-end yes
 
-# Allow DNS (Public & Users → External)
-set rulebase security rules Allow-DNS from Public to External application dns service application-default action allow log-start yes log-end yes
-set rulebase security rules Allow-DNS from Users to External application dns service application-default action allow log-start yes log-end yes
+# Allow HTTP/HTTPS (User → External)
+set rulebase security rules Allow-HTTP-HTTPS from User to External application web-browsing ssl service application-default action allow log-start yes log-end yes
 
-# Allow HTTP/HTTPS (Public & Users → External)
-set rulebase security rules Allow-HTTP-HTTPS from Public to External application web-browsing ssl service application-default action allow log-start yes log-end yes
-set rulebase security rules Allow-HTTP-HTTPS from Users to External application web-browsing ssl service application-default action allow log-start yes log-end yes
+# Allow SMTP/POP3 (User → External)
+set rulebase security rules Allow-SMTP-POP3 from User to External application smtp pop3 service application-default action allow log-start yes log-end yes
 
-# Allow SMTP/POP3 (Public & Users → External)
-set rulebase security rules Allow-SMTP-POP3 from Public to External application smtp pop3 service application-default action allow log-start yes log-end yes
-set rulebase security rules Allow-SMTP-POP3 from Users to External application smtp pop3 service application-default action allow log-start yes log-end yes
+# Allow NTP (User → External)
+set rulebase security rules Allow-NTP from User to External application ntp service application-default action allow log-start yes log-end yes
 
-# Allow NTP (Public & Users → External)
-set rulebase security rules Allow-NTP from Public to External application ntp service application-default action allow log-start yes log-end yes
-set rulebase security rules Allow-NTP from Users to External application ntp service application-default action allow log-start yes log-end yes
+# Allow ICMP (Diagnostics - User → Any)
+set rulebase security rules Allow-ICMP from User to any application ping service application-default action allow log-start yes log-end yes
 
-# Allow ICMP (Diagnostics - Public & Users → Any)
-set rulebase security rules Allow-ICMP from Public to any application ping service application-default action allow log-start yes log-end yes
-set rulebase security rules Allow-ICMP from Users to any application ping service application-default action allow log-start yes log-end yes
-
-# Deny Unauthorized Traffic (Final Deny Rule for Public & Users)
-set rulebase security rules Deny-Unauthorized from Public to any application any service any action deny log-start yes log-end yes
-set rulebase security rules Deny-Unauthorized from Users to any application any service any action deny log-start yes log-end yes
+# Deny Unauthorized Traffic (Final Deny Rule for User)
+set rulebase security rules Deny-Unauthorized from User to any application any service any action deny log-start yes log-end yes
