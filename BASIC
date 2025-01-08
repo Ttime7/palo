@@ -44,7 +44,7 @@ set rulebase security rules Debian-Outbound-AppDefault application ssl
 # Outbound Custom Service (RNDC Only)
 set service RNDC-953 protocol tcp port 953
 set service RNDC-953 protocol udp port 953
-set rulebase security rules Debian-Outbound-Custom from Internal to External source 172.20.240.20 destination any application dns action allow
+set rulebase security rules Debian-Outbound-Custom from Internal to External source 172.20.240.20 destination any application any action allow
 set rulebase security rules Debian-Outbound-Custom service RNDC-953
 set rulebase security rules Debian-Outbound-Custom log-start yes log-end yes
 # Debian Create Inbound Rule for Application-Default
