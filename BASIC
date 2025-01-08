@@ -43,12 +43,9 @@ set rulebase security rules Allow-Inbound-ICMP from External to any source any d
 set rulebase security rules WebMail-Outbound from Public to External source 172.20.241.40 destination any action allow service application-default
 
 # Add Applications to WebMail-Outbound
-set rulebase security rules WebMail-Outbound application smtp-base
 set rulebase security rules WebMail-Outbound application smtp
 set rulebase security rules WebMail-Outbound application pop3
-set rulebase security rules WebMail-Outbound application pop3s
 set rulebase security rules WebMail-Outbound application imap
-set rulebase security rules WebMail-Outbound application imaps
 set rulebase security rules WebMail-Outbound application web-browsing
 set rulebase security rules WebMail-Outbound application ssl
 set rulebase security rules WebMail-Outbound application ntp-base
@@ -58,12 +55,9 @@ set rulebase security rules WebMail-Outbound application ntp-base
 set rulebase security rules WebMail-Inbound from External to Public destination 172.20.241.40 action allow service application-default
 
 # Add Applications to WebMail-Inbound
-set rulebase security rules WebMail-Inbound application smtp-base
 set rulebase security rules WebMail-Inbound application smtp
 set rulebase security rules WebMail-Inbound application pop3
-set rulebase security rules WebMail-Inbound application pop3s
 set rulebase security rules WebMail-Inbound application imap
-set rulebase security rules WebMail-Inbound application imaps
 set rulebase security rules WebMail-Inbound application web-browsing
 set rulebase security rules WebMail-Inbound application ssl
 set rulebase security rules WebMail-Inbound application ntp-base
