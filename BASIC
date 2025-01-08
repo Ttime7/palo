@@ -31,7 +31,7 @@ set rulebase security rules Allow-Inbound-POP3 from External to Public source an
 # NTP (External → Internal NTP Server)
 set rulebase security rules Allow-Inbound-NTP from External to Internal source any destination 172.20.240.20 application ntp-base service application-default action allow
 # ICMP (External → Internal Diagnostic)
-set rulebase security rules Allow-Inbound-ICMP from External to any source any application ping service application-default action allow
+set rulebase security rules Allow-Inbound-ICMP from External to any source any destination any application ping service application-default action allow
 
 
 
