@@ -129,13 +129,9 @@ set service Syslog-1514 protocol udp port 1514
 set rulebase security rules Splunk-User-1514 service Syslog-1514
 set rulebase security rules Splunk-User-1514 log-start yes log-end yes
 
-# Create Service for Splunk Communication (9998)
+set rulebase security rules Splunk-User-9998 from User to Public source 172.20.242.200 destination 172.20.241.20 application splunk action allow
 set service Splunk-9998 protocol tcp port 9998
-# Create Rule for 172.20.242.200
-set rulebase security rules Splunk-User-9998 from User to Public source 172.20.242.200 destination 172.20.241.20 action allow
-# Attach Service to Rule
 set rulebase security rules Splunk-User-9998 service Splunk-9998
-# Enable Logging
 set rulebase security rules Splunk-User-9998 log-start yes log-end yes
 
 # Create Inbound Rule for Splunk
