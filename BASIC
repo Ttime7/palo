@@ -34,6 +34,38 @@ set rulebase security rules Allow-Inbound-NTP from External to Internal source a
 set rulebase security rules Allow-Inbound-ICMP from External to any source any destination any application ping service application-default action allow log-start yes log-end yes
 
 
+# Debian Outbound Application-Default Rule
+set rulebase security rules Debian-Outbound-AppDefault from Internal to External source 172.20.240.20 destination any action allow service application-default
+set rulebase security rules Debian-Outbound-AppDefault application dns-base
+set rulebase security rules Debian-Outbound-AppDefault application ntp-base
+set rulebase security rules Debian-Outbound-AppDefault application web-browsing
+set rulebase security rules Debian-Outbound-AppDefault application ssl
+set rulebase security rules Debian-Outbound-AppDefault log-start yes log-end yes
+# Define RNDC Custom Service
+set service RNDC-953 protocol tcp port 953
+set service RNDC-953 protocol udp port 953
+
+# Debian Outbound RNDC Rule
+set rulebase security rules Debian-Outbound-RNDC from Internal to External source 172.20.240.20 destination any action allow service RNDC-953
+set rulebase security rules Debian-Outbound-RNDC log-start yes log-end yes
+
+# Debian Inbound Application-Default Rule
+set rulebase security rules Debian-Inbound-AppDefault from External to Internal source any destination 172.20.240.20 action allow service application-default
+set rulebase security rules Debian-Inbound-AppDefault application dns-base
+set rulebase security rules Debian-Inbound-AppDefault application ntp-base
+set rulebase security rules Debian-Inbound-AppDefault application web-browsing
+set rulebase security rules Debian-Inbound-AppDefault application ssl
+set rulebase security rules Debian-Inbound-AppDefault log-start yes log-end yes
+
+# Debian Inbound RNDC Rule
+set rulebase security rules Debian-Inbound-RNDC from External to Internal source any destination 172.20.240.20 action allow service RNDC-953
+set rulebase security rules Debian-Inbound-RNDC log-start yes log-end yes
+
+
+
+
+
+
 
 # Debian Create Outbound Rule for Application-Default
 set rulebase security rules Debian-Outbound-AppDefault from Internal to External source 172.20.240.20 destination any action allow service application-default
