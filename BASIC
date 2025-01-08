@@ -30,19 +30,19 @@ set rulebase security rules Allow-Inbound-SMTP from External to Public destinati
 set rulebase security rules Allow-Inbound-SMTP from External to Public destination 172.20.241.40 application smtp-base service application-default action allow
 
 # HTTP/HTTPS (External → Internal Web Server)
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User destination any application web-browsing service application-default action allow
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User destination any application ssl service application-default action allow
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public destination any application web-browsing service application-default action allow
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public destination any application ssl service application-default action allow
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application web-browsing service application-default action allow
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application ssl service application-default action allow
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public source any destination any application web-browsing service application-default action allow
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public source any destination any application ssl service application-default action allow
 
 # POP3 (External → Internal Mail Retrieval Server)
-set rulebase security rules Allow-Inbound-POP3 from External to Public destination 172.20.241.40 application pop3 service application-default action allow
+set rulebase security rules Allow-Inbound-POP3 from External to Public source any destination 172.20.241.40 application pop3 service application-default action allow
 
 # NTP (External → Internal NTP Server)
-set rulebase security rules Allow-Inbound-NTP from External to Internal destination 172.20.240.20 application ntp-base service application-default action allow
+set rulebase security rules Allow-Inbound-NTP from External to Internal source any destination 172.20.240.20 application ntp-base service application-default action allow
 
 # ICMP (External → Internal Diagnostic)
-set rulebase security rules Allow-Inbound-ICMP from External to any application ping service application-default action allow
+set rulebase security rules Allow-Inbound-ICMP from External to any source any application ping service application-default action allow
 
 
 
