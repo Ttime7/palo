@@ -183,7 +183,7 @@ set service Splunk-1514 protocol tcp port 1514
 set rulebase security rules Splunk-Int service Splunk-1514
 set rulebase security rules Splunk-Int log-start yes log-end yes
 
-
+set rulebase security rules Deny-All from any to any source any destination any application any service any action deny log-start yes log-end yes
 
 commit
 
