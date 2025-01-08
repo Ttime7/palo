@@ -19,8 +19,8 @@ set rulebase security rules Allow-ICMP from Public to any source any destination
 set rulebase security rules Allow-Inbound-DNS from External to User source any destination any application dns-base service application-default action allow
 set rulebase security rules Allow-Inbound-DNS from External to Public source any destination any application dns-base service application-default action allow
 # SMTP (External → Internal Mail Server)
-set rulebase security rules Allow-Inbound-SMTP from External to Public destination 172.20.241.30 application smtp-base service application-default action allow
-set rulebase security rules Allow-Inbound-SMTP from External to Public destination 172.20.241.40 application smtp-base service application-default action allow
+set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.30 application smtp-base service application-default action allow
+set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.40 application smtp-base service application-default action allow
 # HTTP/HTTPS (External → Internal Web Server)
 set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application web-browsing service application-default action allow
 set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application ssl service application-default action allow
