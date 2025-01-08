@@ -135,12 +135,12 @@ set rulebase security rules Splunk-User-9998 service Splunk-9998
 set rulebase security rules Splunk-User-9998 log-start yes log-end yes
 
 # Create Inbound Rule for Splunk
-set rulebase security rules Splunk-Inbound from Public to Public source 172.20.242.10 destination 172.20.241.20 action allow
-set rulebase security rules Splunk-Inbound from Public to Public source 172.20.241.30 destination 172.20.241.20 action allow
-set rulebase security rules Splunk-Inbound from Public to Public source 172.20.241.40 destination 172.20.241.20 action allow
+set rulebase security rules Splunk-Int from Public to Public source 172.20.242.10 destination 172.20.241.20 action allow
+set rulebase security rules Splunk-Int from Public to Public source 172.20.241.30 destination 172.20.241.20 action allow
+set rulebase security rules Splunk-Int from Public to Public source 172.20.241.40 destination 172.20.241.20 action allow
 # Attach Services
-set rulebase security rules Splunk-Inbound service Splunk-1514
-set rulebase security rules Splunk-Inbound log-start yes log-end yes
+set rulebase security rules Splunk-Int service Splunk-1514
+set rulebase security rules Splunk-Int log-start yes log-end yes
 
 # Allow DNS (User → External)
 set rulebase security rules Allow-DNS from User to External application dns service application-default action allow log-start yes log-end yes
