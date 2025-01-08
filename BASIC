@@ -192,6 +192,57 @@ commit
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # DNS Traffic
 set rulebase security rules Allow-DNS from User to External source any destination any application dns-base service application-default action allow
 set rulebase security rules Allow-DNS from Public to External source any destination any application dns-base service application-default action allow
