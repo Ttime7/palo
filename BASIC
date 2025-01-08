@@ -1,37 +1,48 @@
-# DNS Traffic
-set rulebase security rules Allow-DNS from User to External source any destination any application dns-base service application-default action allow
-set rulebase security rules Allow-DNS from Public to External source any destination any application dns-base service application-default action allow
-# HTTP/HTTPS Traffic
-set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application web-browsing service application-default action allow
-set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application ssl service application-default action allow
-set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application web-browsing service application-default action allow
-set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application ssl service application-default action allow
-# SMTP Traffic
-set rulebase security rules Allow-SMTP from User to External source any destination any application smtp-base service application-default action allow
-set rulebase security rules Allow-SMTP from Public to External source any destination any application smtp-base service application-default action allow
-# NTP Traffic
-set rulebase security rules Allow-NTP from User to External source any destination any application ntp-base service application-default action allow
-set rulebase security rules Allow-NTP from Public to External source any destination any application ntp-base service application-default action allow
-# ICMP Traffic
-set rulebase security rules Allow-ICMP from User to any source any destination any application ping service application-default action allow
-set rulebase security rules Allow-ICMP from Public to any source any destination any application ping service application-default action allow
-# DNS (External → Internal DNS Server)
+# DNS Traffic (Internal, User, Public ↔ External)
+set rulebase security rules Allow-DNS from Internal to External source any destination any application dns-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-DNS from User to External source any destination any application dns-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-DNS from Public to External source any destination any application dns-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-DNS from External to Internal source any destination any application dns-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-Inbound-DNS from External to User source any destination any application dns-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-Inbound-DNS from External to Public source any destination any application dns-base service application-default action allow log-start yes log-end yes
-# SMTP (External → Internal Mail Server)
+
+# HTTP/HTTPS Traffic (Internal, User, Public ↔ External)
+set rulebase security rules Allow-HTTP-HTTPS from Internal to External source any destination any application web-browsing service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-HTTP-HTTPS from Internal to External source any destination any application ssl service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application web-browsing service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application ssl service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application web-browsing service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application ssl service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Internal source any destination any application web-browsing service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Internal source any destination any application ssl service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application web-browsing service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public source any destination any application ssl service application-default action allow log-start yes log-end yes
+
+# SMTP Traffic (Internal, User, Public ↔ External)
+set rulebase security rules Allow-SMTP from Internal to External source any destination any application smtp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-SMTP from User to External source any destination any application smtp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-SMTP from Public to External source any destination any application smtp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-SMTP from External to Internal source any destination any application smtp-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.30 application smtp-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.40 application smtp-base service application-default action allow log-start yes log-end yes
-# HTTP/HTTPS (External → Internal Web Server)
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application web-browsing service application-default action allow
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application ssl service application-default action allow
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public source any destination any application web-browsing service application-default action allow
-set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public source any destination any application ssl service application-default action allow
-# POP3 (External → Internal Mail Retrieval Server)
+
+# NTP Traffic (Internal, User, Public ↔ External)
+set rulebase security rules Allow-NTP from Internal to External source any destination any application ntp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-NTP from User to External source any destination any application ntp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-NTP from Public to External source any destination any application ntp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-NTP from External to Internal source any destination 172.20.240.20 application ntp-base service application-default action allow log-start yes log-end yes
+
+# ICMP Traffic (Internal, User, Public ↔ External)
+set rulebase security rules Allow-ICMP from Internal to External source any destination any application ping service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-ICMP from User to External source any destination any application ping service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-ICMP from Public to External source any destination any application ping service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-ICMP from External to Internal source any destination any application ping service application-default action allow log-start yes log-end yes
+
+# POP3 Traffic (External to Internal Mail Server)
 set rulebase security rules Allow-Inbound-POP3 from External to Public source any destination 172.20.241.40 application pop3 service application-default action allow log-start yes log-end yes
-# NTP (External → Internal NTP Server)
-set rulebase security rules Allow-Inbound-NTP from External to Internal source any destination 172.20.240.20 application ntp-base service application-default action allow
-# ICMP (External → Internal Diagnostic)
-set rulebase security rules Allow-Inbound-ICMP from External to any source any destination any application ping service application-default action allow log-start yes log-end yes
+
+
+
 
 
 # Debian Outbound Application-Default Rule
@@ -173,6 +184,48 @@ set rulebase security rules Splunk-Int service Splunk-1514
 set rulebase security rules Splunk-Int log-start yes log-end yes
 
 
+
+commit
+
+
+
+
+
+
+# DNS Traffic
+set rulebase security rules Allow-DNS from User to External source any destination any application dns-base service application-default action allow
+set rulebase security rules Allow-DNS from Public to External source any destination any application dns-base service application-default action allow
+# HTTP/HTTPS Traffic
+set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application web-browsing service application-default action allow
+set rulebase security rules Allow-HTTP-HTTPS from User to External source any destination any application ssl service application-default action allow
+set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application web-browsing service application-default action allow
+set rulebase security rules Allow-HTTP-HTTPS from Public to External source any destination any application ssl service application-default action allow
+# SMTP Traffic
+set rulebase security rules Allow-SMTP from User to External source any destination any application smtp-base service application-default action allow
+set rulebase security rules Allow-SMTP from Public to External source any destination any application smtp-base service application-default action allow
+# NTP Traffic
+set rulebase security rules Allow-NTP from User to External source any destination any application ntp-base service application-default action allow
+set rulebase security rules Allow-NTP from Public to External source any destination any application ntp-base service application-default action allow
+# ICMP Traffic
+set rulebase security rules Allow-ICMP from User to any source any destination any application ping service application-default action allow
+set rulebase security rules Allow-ICMP from Public to any source any destination any application ping service application-default action allow
+# DNS (External → Internal DNS Server)
+set rulebase security rules Allow-Inbound-DNS from External to User source any destination any application dns-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-DNS from External to Public source any destination any application dns-base service application-default action allow log-start yes log-end yes
+# SMTP (External → Internal Mail Server)
+set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.30 application smtp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.40 application smtp-base service application-default action allow log-start yes log-end yes
+# HTTP/HTTPS (External → Internal Web Server)
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application web-browsing service application-default action allow
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to User source any destination any application ssl service application-default action allow
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public source any destination any application web-browsing service application-default action allow
+set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public source any destination any application ssl service application-default action allow
+# POP3 (External → Internal Mail Retrieval Server)
+set rulebase security rules Allow-Inbound-POP3 from External to Public source any destination 172.20.241.40 application pop3 service application-default action allow log-start yes log-end yes
+# NTP (External → Internal NTP Server)
+set rulebase security rules Allow-Inbound-NTP from External to Internal source any destination 172.20.240.20 application ntp-base service application-default action allow
+# ICMP (External → Internal Diagnostic)
+set rulebase security rules Allow-Inbound-ICMP from External to any source any destination any application ping service application-default action allow log-start yes log-end yes
 
 
 
