@@ -115,12 +115,12 @@ set rulebase security rules Splunk-Inbound application ssl
 set rulebase security rules Splunk-Inbound application dns-base
 set rulebase security rules Splunk-Inbound application ntp-base
 
-set rulebase security rules Splunk-Internal-Logging from Internal to Public source 172.20.240.20 destination 172.20.241.20 action allow
-# Custom Service for UDP Port 1514
+
+set rulebase security rules Splunk-Internal-Logging from Internal to Public source 172.20.240.20 destination 172.20.241.20 application syslog action allow
 set service Splunk-1514 protocol udp port 1514
 set service Splunk-1514 protocol tcp port 1514
-# Attach Service to Internal Logging Rule
 set rulebase security rules Splunk-Internal-Logging service Splunk-1514
+set rulebase security rules Splunk-Internal-Logging log-start yes log-end yes
 
 # Create Service for Syslog (1514)
 set service Syslog-1514 protocol tcp port 1514
