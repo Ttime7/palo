@@ -20,8 +20,6 @@ set rulebase security rules Allow-Inbound-HTTP-HTTPS from External to Public sou
 set rulebase security rules Allow-SMTP from Internal to External source any destination any application smtp-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-SMTP from User to External source any destination any application smtp-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-SMTP from Public to External source any destination any application smtp-base service application-default action allow log-start yes log-end yes
-set rulebase security rules Allow-Inbound-SMTP from External to Internal source any destination any application smtp-base service application-default action allow log-start yes log-end yes
-set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.30 application smtp-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-Inbound-SMTP from External to Public source any destination 172.20.241.40 application smtp-base service application-default action allow log-start yes log-end yes
 # NTP Traffic (Internal, User, Public ↔ External)
 set rulebase security rules Allow-NTP from Internal to External source any destination any application ntp-base service application-default action allow log-start yes log-end yes
