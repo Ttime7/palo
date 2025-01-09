@@ -41,12 +41,7 @@ set rulebase security rules Debian-Outbound-AppDefault application ntp-base
 set rulebase security rules Debian-Outbound-AppDefault application web-browsing
 set rulebase security rules Debian-Outbound-AppDefault application ssl
 set rulebase security rules Debian-Outbound-AppDefault log-start yes log-end yes
-# Define RNDC Custom Service
-set service RNDC-953 protocol tcp port 953
-set service RNDC-953 protocol udp port 953
-# Debian Outbound RNDC Rule 
-set rulebase security rules Debian-Outbound-RNDC from Internal to External source 172.20.240.20 destination any application any action allow service RNDC-953
-set rulebase security rules Debian-Outbound-RNDC log-start yes log-end yes
+
 # Debian Inbound Application-Default Rule
 set rulebase security rules Debian-Inbound-AppDefault from External to Internal source any destination 172.20.240.20 action allow service application-default
 set rulebase security rules Debian-Inbound-AppDefault application dns-base
@@ -54,9 +49,38 @@ set rulebase security rules Debian-Inbound-AppDefault application ntp-base
 set rulebase security rules Debian-Inbound-AppDefault application web-browsing
 set rulebase security rules Debian-Inbound-AppDefault application ssl
 set rulebase security rules Debian-Inbound-AppDefault log-start yes log-end yes
-# Debian Inbound RNDC Rule
-set rulebase security rules Debian-Inbound-RNDC from External to Internal source any destination 172.20.240.20 application any action allow service RNDC-953
-set rulebase security rules Debian-Inbound-RNDC log-start yes log-end yes
+
+# Ecom Outbound Application-Default Rule
+set rulebase security rules User-Outbound-AppDefault from User to External source 172.20.242.10 destination any action allow service application-default
+set rulebase security rules User-Outbound-AppDefault application dns-base
+set rulebase security rules User-Outbound-AppDefault application ntp-base
+set rulebase security rules User-Outbound-AppDefault application web-browsing
+set rulebase security rules User-Outbound-AppDefault application ssl
+set rulebase security rules User-Outbound-AppDefault log-start yes log-end yes
+
+# Ecom Inbound Application-Default Rule
+set rulebase security rules User-Inbound-AppDefault from External to User source any destination 172.20.242.10 action allow service application-default
+set rulebase security rules User-Inbound-AppDefault application dns-base
+set rulebase security rules User-Inbound-AppDefault application ntp-base
+set rulebase security rules User-Inbound-AppDefault application web-browsing
+set rulebase security rules User-Inbound-AppDefault application ssl
+set rulebase security rules User-Inbound-AppDefault log-start yes log-end yes
+
+# AD Outbound Application-Default Rule
+set rulebase security rules User-Outbound-AppDefault from User to External source 172.20.242.200 destination any action allow service application-default
+set rulebase security rules User-Outbound-AppDefault application dns-base
+set rulebase security rules User-Outbound-AppDefault application ntp-base
+set rulebase security rules User-Outbound-AppDefault log-start yes log-end yes
+# Custom LDAP Services (Outbound)
+set service LDAP-389-TCP protocol tcp port 389
+set service LDAP-389-UDP protocol udp port 389
+set service LDAPS-636 protocol tcp port 636
+# AD Outbound Custom Services
+set rulebase security rules User-Outbound-LDAP from User to External source 172.20.242.200 destination any action allow
+set rulebase security rules User-Outbound-LDAP service LDAP-389-TCP
+set rulebase security rules User-Outbound-LDAP service LDAP-389-UDP
+set rulebase security rules User-Outbound-LDAP service LDAPS-636
+set rulebase security rules User-Outbound-LDAP log-start yes log-end yes
 
 # Create WebMail-Inbound Rule
 set rulebase security rules WebMail-Inbound from External to Public source any destination 172.20.241.40 action allow service application-default
@@ -67,7 +91,7 @@ set rulebase security rules WebMail-Inbound application imap
 set rulebase security rules WebMail-Inbound application web-browsing
 set rulebase security rules WebMail-Inbound application ssl
 set rulebase security rules WebMail-Inbound application ntp-base
-set rulebase security rules WebMail-Inbound application mysql
+#set rulebase security rules WebMail-Inbound application mysql
 set rulebase security rules WebMail-Inbound log-start yes log-end yes
 # Create WebMail-Outbound Rule
 set rulebase security rules WebMail-Outbound from Public to External source 172.20.241.40 destination any action allow service application-default
@@ -79,7 +103,7 @@ set rulebase security rules WebMail-Outbound application imap
 set rulebase security rules WebMail-Outbound application pop3
 set rulebase security rules WebMail-Outbound application web-browsing
 set rulebase security rules WebMail-Outbound application ssl
-set rulebase security rules WebMail-Outbound application mysql
+#set rulebase security rules WebMail-Outbound application mysql
 set rulebase security rules WebMail-Outbound log-start yes log-end yes
 
 # Splunk set up and logging
@@ -119,6 +143,7 @@ set service Splunk-1514 protocol udp port 1514
 set service Splunk-1514 protocol tcp port 1514
 set rulebase security rules Splunk-Int service Splunk-1514
 set rulebase security rules Splunk-Int log-start yes log-end yes
+
 
 set rulebase security rules Deny-All from any to any source any destination any application any service any action deny log-start yes log-end yes
 
