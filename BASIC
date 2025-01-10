@@ -153,7 +153,9 @@ set service Splunk-1514 protocol tcp port 1514
 set rulebase security rules Splunk-Int service Splunk-1514
 set rulebase security rules Splunk-Int log-start yes log-end yes
 
-set rulebase security rules Allow-GitHub from [User, Internal, Public] to External source any destination any application github service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-GitHub from User to External source any destination any application github service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-GitHub from Internal to External source any destination any application github service application-default action allow log-start yes log-end yes
+set rulebase security rules Allow-GitHub from Public to External source any destination any application github service application-default action allow log-start yes log-end yes
 
 set rulebase security rules Deny-All from any to any source any destination any application any service any action deny log-start yes log-end yes
 
