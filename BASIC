@@ -34,6 +34,9 @@ set rulebase security rules Allow-Inbound-ICMP from External to Internal source 
 # POP3 Traffic (External to Internal Mail Server)
 set rulebase security rules Allow-Inbound-POP3 from External to Public source any destination 172.20.241.40 application pop3 service application-default action allow log-start yes log-end yes
 
+
+
+
 # Debian Outbound Application-Default Rule
 set rulebase security rules Debian-Outbound-AppDefault from Internal to External source 172.20.240.20 destination any action allow service application-default
 set rulebase security rules Debian-Outbound-AppDefault application dns-base
@@ -41,7 +44,6 @@ set rulebase security rules Debian-Outbound-AppDefault application ntp-base
 set rulebase security rules Debian-Outbound-AppDefault application web-browsing
 set rulebase security rules Debian-Outbound-AppDefault application ssl
 set rulebase security rules Debian-Outbound-AppDefault log-start yes log-end yes
-
 # Debian Inbound Application-Default Rule
 set rulebase security rules Debian-Inbound-AppDefault from External to Internal source any destination 172.20.240.20 action allow service application-default
 set rulebase security rules Debian-Inbound-AppDefault application dns-base
@@ -57,7 +59,6 @@ set rulebase security rules User-Outbound-AppDefault application ntp-base
 set rulebase security rules User-Outbound-AppDefault application web-browsing
 set rulebase security rules User-Outbound-AppDefault application ssl
 set rulebase security rules User-Outbound-AppDefault log-start yes log-end yes
-
 # Ecom Inbound Application-Default Rule
 set rulebase security rules User-Inbound-AppDefault from External to User source any destination 172.20.242.10 action allow service application-default
 set rulebase security rules User-Inbound-AppDefault application dns-base
@@ -65,9 +66,6 @@ set rulebase security rules User-Inbound-AppDefault application ntp-base
 set rulebase security rules User-Inbound-AppDefault application web-browsing
 set rulebase security rules User-Inbound-AppDefault application ssl
 set rulebase security rules User-Inbound-AppDefault log-start yes log-end yes
-
-
-
 
 # AD Outbound Application-Default Rule
 set rulebase security rules AD-Outbound-AppDefault from User to External source 172.20.242.200 destination any action allow service application-default
@@ -77,7 +75,6 @@ set rulebase security rules AD-Outbound-AppDefault application web-browsing
 set rulebase security rules AD-Outbound-AppDefault application ssl
 set rulebase security rules AD-Outbound-AppDefault application ldap
 set rulebase security rules AD-Outbound-AppDefault log-start yes log-end yes
-
 # AD Inbound Application-Default Rule
 set rulebase security rules AD-Inbound-AppDefault from External to User source any destination 172.20.242.200 action allow service application-default
 set rulebase security rules AD-Inbound-AppDefault application dns-base
@@ -85,11 +82,6 @@ set rulebase security rules AD-Inbound-AppDefault application ntp-base
 set rulebase security rules AD-Inbound-AppDefault application web-browsing
 set rulebase security rules AD-Inbound-AppDefault application ssl
 set rulebase security rules AD-Inbound-AppDefault log-start yes log-end yes
-
-
-
-
-
 
 # Create WebMail-Inbound Rule
 set rulebase security rules WebMail-Inbound from External to Public source any destination 172.20.241.40 action allow service application-default
@@ -154,13 +146,12 @@ set rulebase security rules Splunk-Int service Splunk-1514
 set rulebase security rules Splunk-Int log-start yes log-end yes
 
 
-# Palo Outbound Rule for DNS
+# Palo Outbound 
 set rulebase security rules User-Outbound-DNS from User to External source 172.20.242.153 destination any application dns-base service application-default action allow log-start yes log-end yes
 set rulebase security rules User-Outbound-HTTP from User to External source 172.20.242.153 destination any application web-browsing service application-default action allow log-start yes log-end yes
 set rulebase security rules User-Outbound-HTTPS from User to External source 172.20.242.153 destination any application ssl service application-default action allow log-start yes log-end yes
 set rulebase security rules User-Outbound-NTP from User to External source 172.20.242.153 destination any application ntp-base service application-default action allow log-start yes log-end yes
-
-# Palo Inbound Rule for DNS
+# Palo Inbound
 set rulebase security rules User-Inbound-DNS from External to User source any destination 172.20.242.153 application dns-base service application-default action allow log-start yes log-end yes
 set rulebase security rules User-Inbound-HTTP from External to User source any destination 172.20.242.153 application web-browsing service application-default action allow log-start yes log-end yes
 set rulebase security rules User-Inbound-HTTPS from External to User source any destination 172.20.242.153 application ssl service application-default action allow log-start yes log-end yes
