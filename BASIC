@@ -71,10 +71,8 @@ set rulebase security rules User-Outbound-AppDefault from User to External sourc
 set rulebase security rules User-Outbound-AppDefault application dns-base
 set rulebase security rules User-Outbound-AppDefault application ntp-base
 set rulebase security rules User-Outbound-AppDefault log-start yes log-end yes
-# Custom LDAP Services (Outbound)
-set service LDAP-389-TCP protocol tcp port 389
-set service LDAP-389-UDP protocol udp port 389
-set service LDAPS-636 protocol tcp port 636
+set rulebase security rules User-Outbound-AppDefault from User to External source 172.20.242.200 destination any application ldap service application-default action allow log-start yes log-end yes
+
 # AD Outbound Custom Services
 set rulebase security rules User-Outbound-LDAP from User to External source 172.20.242.200 destination any action allow
 set rulebase security rules User-Outbound-LDAP service LDAP-389-TCP
