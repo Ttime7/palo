@@ -73,12 +73,13 @@ set rulebase security rules User-Outbound-AppDefault application ntp-base
 set rulebase security rules User-Outbound-AppDefault log-start yes log-end yes
 set rulebase security rules User-Outbound-AppDefault from User to External source 172.20.242.200 destination any application ldap service application-default action allow log-start yes log-end yes
 
-# AD Outbound Custom Services
-set rulebase security rules User-Outbound-LDAP from User to External source 172.20.242.200 destination any action allow
-set rulebase security rules User-Outbound-LDAP service LDAP-389-TCP
-set rulebase security rules User-Outbound-LDAP service LDAP-389-UDP
-set rulebase security rules User-Outbound-LDAP service LDAPS-636
-set rulebase security rules User-Outbound-LDAP log-start yes log-end yes
+# AD Inbound Application-Default Rule
+set rulebase security rules AD-Inbound-AppDefault from External to User source any destination 172.20.242.200 action allow service application-default
+set rulebase security rules AD-Inbound-AppDefault application dns-base
+set rulebase security rules AD-Inbound-AppDefault application ntp-base
+set rulebase security rules AD-Inbound-AppDefault application ldap
+set rulebase security rules AD-Inbound-AppDefault log-start yes log-end yes
+
 
 # Create WebMail-Inbound Rule
 set rulebase security rules WebMail-Inbound from External to Public source any destination 172.20.241.40 action allow service application-default
