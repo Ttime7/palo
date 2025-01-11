@@ -147,15 +147,15 @@ set rulebase security rules Splunk-Int log-start yes log-end yes
 
 
 # Palo Outbound 
-set rulebase security rules User-Outbound-DNS from User to External source 172.20.242.153 destination any application dns-base service application-default action allow log-start yes log-end yes
-set rulebase security rules User-Outbound-HTTP from User to External source 172.20.242.153 destination any application web-browsing service application-default action allow log-start yes log-end yes
-set rulebase security rules User-Outbound-HTTPS from User to External source 172.20.242.153 destination any application ssl service application-default action allow log-start yes log-end yes
-set rulebase security rules User-Outbound-NTP from User to External source 172.20.242.153 destination any application ntp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloOut from User to External source 172.20.242.153 destination any application dns-base service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloOut from User to External source 172.20.242.153 destination any application web-browsing service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloOut from User to External source 172.20.242.153 destination any application ssl service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloOut from User to External source 172.20.242.153 destination any application ntp-base service application-default action allow log-start yes log-end yes
 # Palo Inbound
-set rulebase security rules User-Inbound-DNS from External to User source any destination 172.20.242.153 application dns-base service application-default action allow log-start yes log-end yes
-set rulebase security rules User-Inbound-HTTP from External to User source any destination 172.20.242.153 application web-browsing service application-default action allow log-start yes log-end yes
-set rulebase security rules User-Inbound-HTTPS from External to User source any destination 172.20.242.153 application ssl service application-default action allow log-start yes log-end yes
-set rulebase security rules User-Inbound-NTP from External to User source any destination 172.20.242.153 application ntp-base service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application dns-base service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloIn to User source any destination 172.20.242.153 application web-browsing service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application ssl service application-default action allow log-start yes log-end yes
+set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application ntp-base service application-default action allow log-start yes log-end yes
 
 set rulebase security rules Allow-GitHub from User to External source any destination any application github service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-GitHub from Internal to External source any destination any application github service application-default action allow log-start yes log-end yes
