@@ -1,3 +1,19 @@
+set rulebase security rules SMB to User
+set rulebase security rules SMB from External
+set rulebase security rules SMB source any
+set rulebase security rules SMB destination any
+set rulebase security rules SMB source-user any
+set rulebase security rules SMB category any
+set rulebase security rules SMB application [ ms-ds-smb ms-ds-smb-base ms-ds-smbv1 ms-ds-smbv2 ms-ds-smbv3 print-over-ms-smb ]
+set rulebase security rules SMB service application-default
+set rulebase security rules SMB source-hip any
+set rulebase security rules SMB destination-hip any
+set rulebase security rules SMB action deny
+set rulebase security rules SMB description "Bad :( "
+
+
+
+
 # DNS Traffic (Internal, User, Public ↔ External)
 set rulebase security rules Allow-DNS from Internal to External source any destination any application dns-base service application-default action allow log-start yes log-end yes
 set rulebase security rules Allow-DNS from User to External source any destination any application dns-base service application-default action allow log-start yes log-end yes
