@@ -23,7 +23,8 @@ set rulebase security rules SMB description "Bad :( "
 #cent 10.100.1.48 
 #Debian 10.100.1.44
 
-
+set rulebase security rules GoogleDNS action allow from any to any source any destination 8.8.8.8
+set rulebase security rules GoogleDNS application dns service application-default
 # ALL INBOUND RULES CHANGE!!!
 set rulebase security rules DNS-in from [ External Internal ] to [ Internal External ] source any destination 10.100.1.44 action allow service application-default
 set rulebase security rules Ecom-Inbound from [ External Internal ] to [ Internal External ] source any destination 10.100.1.48 action allow service application-default
@@ -71,13 +72,6 @@ set rulebase security rules Splunk-User-9998 log-start yes log-end yes
 #PA OUTBOUND
 set rulebase security rules PaloOut from User to External source 172.20.242.153 destination any application [ dns-base ntp-base web-browsing ssl ] service application-default action allow log-start yes log-end yes
 
-
-# Palo Inbound
-#set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application dns-base service application-default action allow log-start yes log-end yes
-#set rulebase security rules PaloIn to User source any destination 172.20.242.153 application web-browsing service application-default action allow log-start yes log-end yes
-#set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application ssl service application-default action allow log-start yes log-end yes
-#set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application ntp-base service application-default action allow log-start yes log-end yes
-
 set rulebase security rules Allow-GitHub from [ Internal User Public ] to External source any destination any application github service application-default action allow log-start yes log-end yes
 set rulebase security rules Deny-All from any to any source any destination any application any service any action deny log-start yes log-end yes
 
@@ -85,6 +79,11 @@ commit
 
 
 
+# Palo Inbound
+#set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application dns-base service application-default action allow log-start yes log-end yes
+#set rulebase security rules PaloIn to User source any destination 172.20.242.153 application web-browsing service application-default action allow log-start yes log-end yes
+#set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application ssl service application-default action allow log-start yes log-end yes
+#set rulebase security rules PaloIn from External to User source any destination 172.20.242.153 application ntp-base service application-default action allow log-start yes log-end yes
 
 
 
