@@ -24,9 +24,9 @@ set rulebase security rules SMB description "Bad :( "
 
 
 # Debian Outbound Application-Default Rule
-set rulebase security rules Debian-in from External to Internal source any destination 10.100.1.44 action allow
+set rulebase security rules Debian-in from External to Internal source any destination 10.100.1.44 action allow service application-default
 
-set rulebase security rules Debian-in from Internal to External source 172.20.240.20 destination any action allow service application-default
+set rulebase security rules Debian-in from Internal to External source any 
 set rulebase security rules Debian-in application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
 
 #set rulebase security rules Debian-O application ntp-base
