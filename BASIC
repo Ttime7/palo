@@ -15,48 +15,42 @@ set rulebase security rules SMB description "Bad :( "
 #PA 10.100.1.56
 #WebMail 10.100.1.58
 #Splunk 10.100.1.55
-#cent 10.100.1.48
 #AD 10.100.1.47
 #Web USer
 #DNS 10.100.1.45
 #DOCK
+
+#cent 10.100.1.48 
 #Debian 10.100.1.44
 
 
 # ALL INBOUND RULES CHANGE!!!
 set rulebase security rules Debian-in from [ External Internal ] to [ Internal External ] source any destination 10.100.1.44 action allow service application-default
+set rulebase security rules Ecom-Inbound from [ External Internal ] to [ Internal External ] source any destination 10.100.1.48 action allow service application-default
+set rulebase security rules AD-Inbound from [ External Internal ] to [ Internal External ] source any destination 10.100.1.47 action allow service application-default
 
-set rulebase security rules Debian-in from Internal to External source any 
+# Debian Inbound
 set rulebase security rules Debian-in application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
-
-#set rulebase security rules Debian-O application ntp-base
-#set rulebase security rules Debian-O application web-browsing
-#set rulebase security rules Debian-O application ssl
-#set rulebase security rules Debian-O log-start yes log-end yes
 # Debian Outbound Application-Default Rule
 set rulebase security rules Debian-O from Internal to External source 172.20.240.20 destination any action allow service application-default
 set rulebase security rules Debian-O application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
 
-#set rulebase security rules Debian-Inbound-AppDefault application dns-base
-#set rulebase security rules Debian-Inbound-AppDefault application ntp-base
-#set rulebase security rules Debian-Inbound-AppDefault application web-browsing
-#set rulebase security rules Debian-Inbound-AppDefault application ssl
-#set rulebase security rules Debian-Inbound-AppDefault log-start yes log-end yes
-
-# Ecom Outbound Application-Default Rule
-set rulebase security rules User-Outbound-AppDefault from User to External source 172.20.242.10 destination any action allow service application-default
-set rulebase security rules User-Outbound-AppDefault application dns-base
-set rulebase security rules User-Outbound-AppDefault application ntp-base
-set rulebase security rules User-Outbound-AppDefault application web-browsing
-set rulebase security rules User-Outbound-AppDefault application ssl
-set rulebase security rules User-Outbound-AppDefault log-start yes log-end yes
 # Ecom Inbound Application-Default Rule
-set rulebase security rules User-Inbound-AppDefault from External to User source any destination 172.20.242.10 action allow service application-default
-set rulebase security rules User-Inbound-AppDefault application dns-base
-set rulebase security rules User-Inbound-AppDefault application ntp-base
-set rulebase security rules User-Inbound-AppDefault application web-browsing
-set rulebase security rules User-Inbound-AppDefault application ssl
-set rulebase security rules User-Inbound-AppDefault log-start yes log-end yes
+set rulebase security rules Ecom-Inbound application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
+# Ecom Outbound
+set rulebase security rules Ecom-Inbound from User to External source 172.20.242.10 destination any action allow service application-default
+set rulebase security rules Ecom-Inbound application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
+
+# AD Inbound
+set rulebase security rules AD-Inbound application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
+# AD Outbound
+set rulebase security rules AD-Outbound from User to External source 172.20.242.200 destination any action allow service application-default
+set rulebase security rules AD-Outbound application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
+
+
+
+
+
 
 # AD Outbound Application-Default Rule
 set rulebase security rules AD-Outbound-AppDefault from User to External source 172.20.242.200 destination any action allow service application-default
@@ -266,3 +260,46 @@ set rulebase security rules Allow-ICMP from User to any application ping service
 
 # Deny Unauthorized Traffic (Final Deny Rule for User)
 set rulebase security rules Deny-Unauthorized from User to any application any service any action deny log-start yes log-end yes
+
+
+
+
+
+
+
+#set rulebase security rules Debian-O application ntp-base
+#set rulebase security rules Debian-O application web-browsing
+#set rulebase security rules Debian-O application ssl
+#set rulebase security rules Debian-O log-start yes log-end yes
+#set rulebase security rules Debian-Inbound-AppDefault application dns-base
+#set rulebase security rules Debian-Inbound-AppDefault application ntp-base
+#set rulebase security rules Debian-Inbound-AppDefault application web-browsing
+#set rulebase security rules Debian-Inbound-AppDefault application ssl
+#set rulebase security rules Debian-Inbound-AppDefault log-start yes log-end yes
+
+
+
+#set rulebase security rules Debian-O application ntp-base
+#set rulebase security rules Debian-O application web-browsing
+#set rulebase security rules Debian-O application ssl
+#set rulebase security rules Debian-O log-start yes log-end yes
+#set rulebase security rules Debian-Inbound-AppDefault application dns-base
+#set rulebase security rules Debian-Inbound-AppDefault application ntp-base
+#set rulebase security rules Debian-Inbound-AppDefault application web-browsing
+#set rulebase security rules Debian-Inbound-AppDefault application ssl
+#set rulebase security rules Debian-Inbound-AppDefault log-start yes log-end yes
+
+# Ecom Outbound Application-Default Rule
+set rulebase security rules User-Outbound-AppDefault from User to External source 172.20.242.10 destination any action allow service application-default
+set rulebase security rules User-Outbound-AppDefault application dns-base
+set rulebase security rules User-Outbound-AppDefault application ntp-base
+set rulebase security rules User-Outbound-AppDefault application web-browsing
+set rulebase security rules User-Outbound-AppDefault application ssl
+set rulebase security rules User-Outbound-AppDefault log-start yes log-end yes
+# Ecom Inbound Application-Default Rule
+set rulebase security rules User-Inbound-AppDefault from External to User source any destination 172.20.242.10 action allow service application-default
+set rulebase security rules User-Inbound-AppDefault application dns-base
+set rulebase security rules User-Inbound-AppDefault application ntp-base
+set rulebase security rules User-Inbound-AppDefault application web-browsing
+set rulebase security rules User-Inbound-AppDefault application ssl
+set rulebase security rules User-Inbound-AppDefault log-start yes log-end yes
