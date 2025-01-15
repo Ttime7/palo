@@ -42,7 +42,7 @@ set rulebase security rules DNS-Out application [ dns-base ntp-base web-browsing
 # Ecom Inbound Application-Default Rule
 set rulebase security rules Ecom-Inbound destination 172.20.242.10 application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
 # Ecom Outbound
-set rulebase security rules Ecom-Out from User to External source 172.20.242.10 destination any action allow service application-default
+set rulebase security rules Ecom-Out from Public to External source 172.20.242.10 destination any action allow service application-default
 set rulebase security rules Ecom-Out application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
 # AD Inbound
 set rulebase security rules AD-Inbound destination 172.20.242.200 application [ dns-base ntp-base web-browsing ssl ] log-start yes log-end yes
